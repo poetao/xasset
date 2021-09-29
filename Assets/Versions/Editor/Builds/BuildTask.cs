@@ -22,13 +22,20 @@ namespace VEngine.Editor.Builds
             bundleExtension = ".unity3d";
         }
 
+        public BuildTask(BuildRules rules)
+        {
+            name = nameof(Manifest);
+            buildAssetBundleOptions = rules.options;
+            bundleExtension = rules.extension;
+            bundledAssets = rules.GetAssets2Bundle();
+        }
+
         public Record record { get; private set; }
 
         private static string GetRecordsPath(string buildName)
         {
             return Settings.GetBuildPath($"build_records_for_{buildName}.json");
         }
-
 
         private static void WriteRecord(Record record)
         {
@@ -50,6 +57,11 @@ namespace VEngine.Editor.Builds
         {
             EditorUtility.DisplayProgressBar($"{title}({index}/{max}) ", content,
                 index * 1f / max);
+        }
+
+        public void ResetBundleAssets()
+        {
+            bundledAssets.Clear();
         }
 
         public void BuildBundles()

@@ -28,6 +28,18 @@ namespace VEngine.Editor
             BuildScript.BuildPlayer();
         }
 
+        [MenuItem("Assets/Versions/Build/Rule")]
+        public static void BuildRule()
+        {
+            BuildScript.BuildRules();
+        }
+
+        [MenuItem("Assets/Versions/Build/AutoGroup")]
+        public static void BuildAutoGroup()
+        {
+            BuildScript.BuildAutoGroup();
+        }
+
         [MenuItem("Assets/Versions/Copy To StreamingAssets")]
         public static void CopyToStreamingAssets()
         {

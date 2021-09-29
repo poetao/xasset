@@ -21,7 +21,25 @@ namespace VEngine.Editor.Builds
 
         public static void BuildBundles()
         {
-            BuildBundles(new BuildTask());
+            var rules = GetRules();
+            BuildBundles(new BuildTask(rules));
+        }
+
+        public static void BuildRules()
+        {
+            var rules = GetRules();
+            rules.Build();
+        }
+
+        public static void BuildAutoGroup()
+        {
+            var rules = GetRules();
+            rules.Build();
+        }
+
+        private static BuildRules GetRules()
+        {
+            return Settings.LoadAsset<BuildRules>("Assets/Rules.asset");
         }
 
         private static string GetTimeForNow()
